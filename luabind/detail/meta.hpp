@@ -7,8 +7,8 @@
 
 #include <tuple>
 
-namespace meta {
-
+namespace luabind { namespace meta
+{
 	struct type_list_tag {};
 	struct index_list_tag {};
 
@@ -34,10 +34,10 @@ namespace meta {
 	{
 		using type =  T;
 	};
-
-	template< typename... Args >
-	void expand_calls_hack(Args&&... args)
-	{}
+	
+	struct init_order {
+		init_order(std::initializer_list<int>) {}
+	};
 
 	// common operators
 	template< typename T >
@@ -176,21 +176,6 @@ namespace meta {
 
 	template< >
 	struct pop_front< type_list< > >
-	{
-		using type = type_list< >;
-	};
-
-	/*
-	pop_back
-	*/
-	template< typename TypeN, typename... Types >
-	struct pop_back< type_list< Types..., TypeN > >
-	{
-		using type = type_list< Types... >;
-	};
-
-	template< >
-	struct pop_back< type_list< > >
 	{
 		using type = type_list< >;
 	};
@@ -570,7 +555,7 @@ namespace meta {
 	{
 	};
 
-}
+}}
 
 #endif
 
