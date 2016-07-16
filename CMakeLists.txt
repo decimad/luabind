@@ -40,11 +40,14 @@ include_directories(
 	${LUA_INCLUDE_DIRS})
 
 add_subdirectory(src)
-add_subdirectory(test)
 
 if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
 	if(LUABIND_BUILD_TESTING)
 		add_subdirectory(test)
 	endif()
 	add_subdirectory(doc)
+else()
+	if(LUABIND_BUILD_TESTING)
+		add_subdirectory(test)
+	endif()
 endif()
