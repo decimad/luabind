@@ -49,5 +49,9 @@ endif()
 
 if(LUABIND_BUILD_DOCS)
 	add_subdirectory(doc)
+else()
+	if(LUABIND_BUILD_TESTING)
+		add_subdirectory(test)
+	endif()
 endif()
 
